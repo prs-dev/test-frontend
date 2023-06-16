@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.slick-slider {
+	width: 60%;
+	display: flex !important;
+}
+
+.slick-slider div {
+	display: flex !important;
+	gap: 20px;
+}
+
+.slick-slider section {
+	display: flex !important;
+	gap: 10px;
+	flex-direction: column;
+	border-radius: 10px;
+	overflow: hidden;
+	border: 1px solid #b6b4b4;
+}
+
+.slick-slider p{
+	text-align: center;
+}
+
+.slick-prev, .slick-next {
+	display: none !important;
+}
+
+.leaflet-container {
+	width: 100%;
+	height: 100%;
+}
+
+#test {
+	background: #fff;
+	overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 13; 
+  /* start showing ellipsis when 3rd line is reached */
+  /* white-space: pre-wrap; */
+}
+
+  #card1, #card2, #card3, #card4 {
+	background-image: none;
+	background-position: -1000px 0px;
+	background-repeat: no-repeat;
+	transition: all 1s ease;
+  }
+
+  #card1:hover {
+	background-image: url('/assets/jyotish.jpeg');
+	background-position: 0px 0px;
+  }
+  #card2:hover {
+	background-image: url('/assets/resi-vastu.jpg');
+	background-position: 0px 0px;
+  }
+  #card3:hover {
+	background-image: url('/natural/yoga.jpg');
+	background-position: 0px 0px;
+  }
+  #card4:hover {
+	background-image: url('/assets/legalv2.png');
+	background-position: 0px 0px;
+  }
