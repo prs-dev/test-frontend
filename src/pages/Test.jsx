@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 
-const Success = () => {
+const Test = () => {
     const navigate = useNavigate()
     useEffect(() => {
         setTimeout(() => {
@@ -17,4 +17,4 @@ const Success = () => {
   )
 }
 
-export default Success
+export default Test
