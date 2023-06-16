@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Appointment from "./pages/Appointment"
-import Test from "./pages/Test"
+import Success from "./pages/Success"
 
 
 const App = () => {
@@ -36,7 +36,7 @@ const App = () => {
         <Route path="/vastu" element={<Vastu />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/appointment" element={<Appointment />} />
-        <Route path="/test" element={<Test />} />
+        <Route path="/success" element={<Success />} />
       </Routes>
       </main>
       <footer>
