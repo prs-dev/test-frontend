@@ -6,9 +6,9 @@ export default {
   ],
   theme: {
     screens: {
-      sm: '480px',
+      sm: '380px',
       md: '768px',
-      lg: '976px',
+      lg: '1211px',
       xl: '1440px',
     },
     fontFamily: {

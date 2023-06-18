@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import {motion} from 'framer-motion'
+import Loader from '../components/Loader'
 
 const arr = [
     {
@@ -22,6 +23,7 @@ const url = 'https://backend-s3nk.onrender.com'
 
 const Home = () => {
     const [index, setIndex] = useState(1)
+    const [isLoading, setIsLoading] = useState(false)
     const [data, setData] = useState({
         name: '',
         mobile: '',
@@ -42,9 +44,9 @@ const Home = () => {
     }, [index])
 
     const handleSubmit = async(e) => {
+        setIsLoading(true)
         e.preventDefault()
         // console.log(e)
-        e.preventDefault()
         axios.post(`${url}/api/contact-two`, data)
         .then(res => {
             console.log(res)
@@ -60,58 +62,61 @@ const Home = () => {
             console.error(e.message)
             toast.error("Please fill out all the fields!")
         })
+        .finally(() => setIsLoading(false))
     }
 
     // toast.success("hello")
 
     return (
         <div>
+            {isLoading && <Loader />}
             <div className="relative h-[calc(100vh-70px)]">
                 {arr.map((item, i) => {
                     return index === i ? <img src={item.img} alt="BannerImage" className="absolute h-[calc(100vh-70px)] w-full object-cover object-right opacity-70 transition opacity delay-150" /> : <img src={item.img} alt="BannerImage" className="absolute h-[calc(100vh-70px)] w-full object-cover object-right opacity-0" />
                 })}
 
                 <div className="absolute -z-10 bg-gradient-to-t from-mainColor h-[calc(100vh-70px)] w-full" />
-                <div className='absolute flex flex-col gap-[10px] items-center justify-center h-[calc(100vh-70px)] w-full text-[3rem] text-white'>
+                <div className='absolute flex flex-col gap-[10px] items-center justify-center h-[calc(100vh-70px)] w-full text-[1.5rem] md:text-[2rem] lg:text-[3rem] text-white'>
                     <p>Unlock Your inner happiness with</p>
-                    <p className='font-bold text-[4rem] bg-white p-[10px] rounded-md text-mainColor'>Yassh Consultancy Services</p>
+                    <p className='font-bold text-[1.5rem] md:text-[3rem] lg:text-[4rem] bg-white p-[10px] rounded-md text-mainColor'>Yassh Consultancy Services</p>
                 </div>
             </div>
 
-            <div className='px-[20rem] py-[4rem] bg-gradient-to-b from-mainColor flex flex-col gap-[20px]'>
-                <h1 className='text-3xl font-bold text-[#dfe2e2] bg-mainColor w-[30%] text-center p-2'>Welcome to YCS India</h1>
+            <div className=' md:px-[5rem] md:py-[1rem] lg:px-[20rem] lg:py-[4rem] bg-gradient-to-b from-mainColor flex flex-col gap-[20px]'>
+                <h1 className='text-3xl font-bold text-[#dfe2e2] bg-mainColor md:w-[30%] lg:w-[30%] text-center p-2'>Welcome to YCS India</h1>
                 {/* <hr className='h-px border-0 dark:bg-[#064255] rounded' /> */}
-                <div className="flex items-center gap-[20px]">
-                    <p className='w-[50%] flex-1 font-semibold text-white text-justify'>The objective of Yash Consultancy Services India is to provide expert guidance and solutions in the fields of astrology, arbitration, legal consultancy, and natural life care. Our aim is to empower individuals and organizations to overcome challenges, resolve conflicts, and achieve holistic well-being. We strive to deliver high-quality services that are personalized, ethical, and result-oriented. Through our expertise, knowledge, and client-centric approach, we seek to create a positive impact on the lives of our clients, helping them discover their true potential, embrace harmony, and lead fulfilling lives.</p>
+                <div className="flex items-center flex-col md:flex-row lg:flex-row gap-[20px]">
+                    <p className='w-[90%] md:w-[50%] flex-1 font-semibold text-white text-justify'>The objective of Yash Consultancy Services India is to provide expert guidance and solutions in the fields of astrology, arbitration, legal consultancy, and natural life care. Our aim is to empower individuals and organizations to overcome challenges, resolve conflicts, and achieve holistic well-being. We strive to deliver high-quality services that are personalized, ethical, and result-oriented. Through our expertise, knowledge, and client-centric approach, we seek to create a positive impact on the lives of our clients, helping them discover their true potential, embrace harmony, and lead fulfilling lives.</p>
                     <div className="flex-1 object-cover h-[20rem] shadow-2xl">
                         <img className='h-[100%] w-[100%] border' src="/assets/main-page-2.jpg" alt="" />
                     </div>
                 </div>
                 <div className='flex gap-[10px] mt-[20px]'>
                     <div className='flex flex-col border shadow-xl p-[10px] rounded-[10px] flex-1'>
-                        <img className='w-[100%] h-[200px]' src="/assets/jyotish.jpeg" alt="" />
-                        <p className='text-2xl font-semibold text-contentColor mt-[10px]'>Bhartiye Jyotish</p>
+                        <img className='lg:w-[100%] lg:h-[200px]' src="/assets/jyotish.jpeg" alt="" />
+                        <p className='text-sm lg:text-2xl font-semibold text-contentColor mt-[10px]'>Bhartiye Jyotish</p>
                     </div>
                     <div className='flex flex-col border shadow-xl p-[10px] rounded-[10px] flex-1'>
-                        <img className='w-[100%] h-[200px]' src="/assets/natural.jpg" alt="" />
-                        <p className='text-2xl font-semibold text-contentColor mt-[10px]'>Natural Life Care</p>
+                        <img className='lg:w-[100%] lg:h-[200px]' src="/assets/natural.jpg" alt="" />
+                        <p className='text-sm lg:text-2xl font-semibold text-contentColor mt-[10px]'>Natural Life Care</p>
                     </div>
                     <div className='flex flex-col border shadow-xl p-[10px] rounded-[10px] flex-1'>
-                        <img className='w-[100%] h-[200px]' src="/assets/lawv2.png" alt="" />
-                        <p className='text-2xl font-semibold text-contentColor
+                        <img className='lg:w-[100%] lg:h-[200px]' src="/assets/lawv2.png" alt="" />
+                        <p className='text-sm lg:text-2xl font-semibold text-contentColor
                          mt-[10px]'>Sahay Bhartiya Vidhik</p>
                     </div>
                 </div>
             </div>
+            <hr className='block md:hidden lg:hidden py-2' />
 
-            <div className='px-[20rem] py-[4rem] bg-white flex gap-[20px]'>
+            <div className='md:px-[5rem] md:py-[1rem] lg:px-[20rem] lg:py-[4rem] bg-white flex flex-col lg:flex-row md:flex-row gap-[20px]'>
 
                 {/* <hr className='h-px border-0 dark:bg-[#064255] rounded' /> */}
                 <div className="flex-1 object-cover h-[20rem] shadow-2xl">
                     <img className='h-[100%] w-[100%] border' src="/assets/main-page-1.jpg" alt="" />
                 </div>
                 <div className="flex-1 flex flex-col  gap-[20px]">
-                    <h1 className='text-3xl font-bold w-[40%] text-center text-white bg-mainColor p-2'>
+                    <h1 className='text-3xl font-bold  md:w-[40%] lg:w-[40%] text-center text-white bg-mainColor p-2'>
                         Our Mission
                     </h1>
 
@@ -120,18 +125,20 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="relative h-[30vh]">
+            <hr className='block md:hidden lg:hidden py-2' /> 
+
+            <div className="relative h-[30vh] hidden lg:block md:block">
                 {arr.map((item, i) => {
                     return index === i ? <img src={item.img} alt="BannerImage" className="absolute h-[30vh] w-full object-cover object-right opacity-70 transition opacity delay-150" /> : <img src={item.img} alt="BannerImage" className="absolute h-[30vh] w-full object-cover object-right opacity-0" />
                 })}
                 <div className="absolute -z-10 bg-gradient-to-t from-mainColor h-[30vh] w-full" />
             </div>
 
-            <div className='px-[20rem] py-[4rem] bg-gradient-to-b from-mainColor flex flex-col gap-[20px]'>
-                <h1 className='text-3xl font-bold text-[#dfe2e2] bg-mainColor text-center w-[20%]'>Our Services</h1>
+            <div className='md:px-[5rem] md:py-[1rem] lg:px-[20rem] lg:py-[4rem] bg-gradient-to-b from-mainColor flex flex-col gap-[20px]'>
+                <h1 className='text-3xl font-bold text-[#dfe2e2] bg-mainColor text-center md:w-[20%] lg:w-[20%]'>Our Services</h1>
                 {/* <hr className='h-px border-0 dark:bg-[#064255] rounded' /> */}
-                <div className="flex items-center">
-                    <div className='flex-[2] flex flex-col items-left gap-[20px]'>
+                <div className="flex items-center flex-col md:flex-row lg:flex-row">
+                    <div className='flex-[2] flex flex-col md:items-left lg:items-left items-center gap-[20px]'>
                         <p className='w-[80%] text-3xl font-semibold text-white'>Welcome to Bhartiye Jyotish</p>
                         <p className='w-[80%] font-semibold text-white'>Discover the profound insights of Indian astrology with our expert services. Gain clarity, guidance, and alignment with the cosmic energies to unlock your true potential and lead a fulfilling life</p>
                     </div>
@@ -139,19 +146,21 @@ const Home = () => {
                         <img className='h-[100%] w-[100%] rounded-md border' src="/assets/rishi.jpg" alt="" />
                     </div>
                 </div>
-                <div className="flex items-center">
+                <hr className='block md:hidden lg:hidden' />
+                <div className="flex items-center flex-col md:flex-row lg:flex-row">
                     <div className="flex-1 object-cover h-[20rem] shadow-2xl rounded-md">
                         <img className='h-[100%] w-[100%] rounded-md border' src="/assets/natural.jpg" alt="" />
                     </div>
-                    <div className='flex-[2] flex flex-col items-end gap-[20px]'>
+                    <div className='flex-[2] flex flex-col items-center md:items-end lg:items-end gap-[20px]'>
                         <p className='w-[80%] text-3xl font-semibold text-mainColor'>Natural Life Care</p>
                         <p className='w-[80%] font-semibold text-contentColor'>The purity and benevolence of nature serve as the wellspring of our strength, and we wholeheartedly embrace organic practices in our therapies. Our commitment to utilizing the purest elements of nature ensures that our treatments are in perfect harmony with the environment. Nestled in a serene and unspoiled setting, we are blessed with the abundance of fresh air, pristine water, untouched soil, ample sunlight, and lush virgin forests, all of which form the backdrop for our therapeutic endeavors.</p>
                     </div>
 
                 </div>
-                <div className="flex items-center">
+                <hr className='block md:hidden lg:hidden' />
+                <div className="flex items-center flex-col md:flex-row lg:flex-row">
 
-                    <div className='flex-[2] flex flex-col items-left gap-[20px]'>
+                    <div className='flex-[2] flex flex-col items-center md:items-left lg:items-left gap-[20px]'>
                         <p className='w-[80%] text-3xl font-semibold text-mainColor'>Sahaya Bhartiye Vidhik</p>
                         <p className='w-[80%] font-semibold text-contentColor'>In today’s complex legal landscape, having access to reliable legal guidance is essential. Synergy Consultancy Services India is a trusted legal consultancy firm that provides expert assistance and guidance in navigating the intricacies of the Indian legal system. With a commitment to excellence and client satisfaction, Synergy Consultancy Services India offers a range of legal consultancy services tailored to meet the diverse needs of individuals and businesses</p>
                     </div>
@@ -161,9 +170,12 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className='px-[20rem] py-[4rem] bg-gradient-to-b from-mainColor to-navColor  flex flex-col gap-[20px]'>
-                <h1 className='text-3xl font-bold text-[#dfe2e2] bg-contentColor w-[30%] text-center'>Center for Excellence</h1>
+            <hr className='block md:hidden lg:hidden py-2' /> 
+
+            <div className='md:px-[5rem] md:py-[1rem] lg:px-[20rem] lg:py-[4rem] bg-gradient-to-b from-mainColor to-navColor  flex flex-col gap-[20px]'>
+                <h1 className='text-3xl font-bold text-[#dfe2e2] bg-contentColor md:w-[30%] lg:w-[30%] text-center'>Center for Excellence</h1>
                 {/* <hr className='h-px border-0 dark:bg-[#064255] rounded' /> */}
+                <div className='sm:px-10 lg:px-0'>
                 <p className='w-[100%] font-semibold text-white text-justify my-2'>Yassh Consultancy Services India is proud to establish a Center for Excellence at our headquarters in Lucknow. This center serves as a hub of expertise, innovation, and continuous learning, reinforcing our commitment to delivering exceptional services in the fields of astrology, arbitration, legal consultancy, and naturopathy.
 
                 <p className='my-2'>The Center for Excellence embodies our vision of providing comprehensive and cutting-edge solutions to our clients. It serves as a platform for our team of experts to enhance their knowledge, skills, and professional development, enabling them to stay at the forefront of their respective fields.</p>
@@ -185,12 +197,15 @@ const Home = () => {
                 <p className='my-2'>The establishment of the Center for Excellence at our Lucknow headquarters exemplifies our unwavering commitment to excellence, continuous improvement, and staying ahead of the curve in our service offerings. It enables us to provide superior consultancy services, drive innovation, and empower our clients to achieve their goals with confidence and succes
                 </p>
                 </p>
+                </div>
             </div>
 
-            <div className='px-[20rem] py-[4rem] bg-gradient-to-b from-mainColor to-navColor  flex flex-col gap-[20px]'>
-                <div className="flex items-center">
+            <hr className='block md:hidden lg:hidden py-2' /> 
 
-                    <div className='flex-[2] flex flex-col items-left gap-[20px]'>
+            <div className='md:px-[5rem] md:py-[1rem] lg:px-[20rem] lg:py-[4rem] bg-gradient-to-b from-mainColor to-navColor flex flex-col gap-[20px]'>
+                <div className="flex items-center flex-col lg:flex-row md:flex-row">
+
+                    <div className='flex-[2] flex flex-col text-center md:text-left lg:text-left items-center md:items-start lg:items-start gap-[20px]'>
                         <p className='w-[80%] text-3xl font-semibold text-white'>Contact Us</p>
                         <p className='w-[80%] font-semibold text-slate-300'>Thank you for your interest in Yash Consultancy Services. We are here to assist you with your queries and provide expert guidance in astrology, arbitration, legal consultancy, and natural Life Care.</p>
                         <span className='flex gap-[10px] text-white'>

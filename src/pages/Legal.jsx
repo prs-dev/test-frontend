@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {toast} from 'react-toastify'
 import {motion} from 'framer-motion'
 import axios from 'axios'
+import Loader from '../components/Loader'
 
 const url = 'https://backend-s3nk.onrender.com'
 
@@ -11,7 +12,10 @@ const Legal = () => {
     message: ''
   })
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const handleSubmit = async(e) => {
+    setIsLoading(true)
     e.preventDefault()
     axios.post(`${url}/api/contact-one`, data)
     .then(res => {
@@ -26,16 +30,18 @@ const Legal = () => {
         console.error(e.message)
         toast.error("Please fill out all the fields!")
     })
+    .finally(() => setIsLoading(false))
 }
   return (
     <div>
+      {isLoading && <Loader />}
       <div className='relative'>
         <img className='w-full object-cover h-[50vh] opacity-30' src="/assets/legalv2.png" alt="" />
         <div className='absolute -z-10 top-0 left-0 bg-gradient-to-t from-mainColor to-contentColor w-full h-[50vh]'></div>
-        <h2 className='absolute bottom-0 text-3xl bg-mainColor flex items-center justify-center text-white p-1 m-10 w-[20%]'>Sahaya Bhartiya Vidhik</h2>
+        <h2 className='absolute bottom-0 text-3xl bg-mainColor flex items-center justify-center text-white p-1 m-10 md:w-[20%] lg:w-[20%]'>Sahaya Bhartiya Vidhik</h2>
       </div>
       <div className='w-[70%] mx-auto'>
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <div className='flex gap-4 flex-col md:flex-row lg:flex-row items-center justify-center my-10'>
           <div className='flex-1'>
             <h2 className='bottom-0 text-2xl bg-mainColor flex items-center justify-center text-white p-1 my-10 w-[50%]'>Legal</h2>
             <p className='py-1 text-contentColor'>In today’s complex legal landscape, having access to reliable legal guidance is essential. Synergy Consultancy Services India is a trusted legal consultancy firm that provides expert assistance and guidance in navigating the intricacies of the Indian legal system. With a commitment to excellence and client satisfaction, Synergy Consultancy Services India offers a range of legal consultancy services tailored to meet the diverse needs of individuals and businesses.</p>
@@ -46,7 +52,9 @@ const Legal = () => {
           </div>
         </div>
 
-        <div className='flex gap-4 items-center justify-center'>
+        <hr className='py-2' />
+
+        <div className='flex gap-4 flex-col md:flex-row lg:flex-row items-center justify-center'>
           <div className='flex-1 flex items-center justify-center'>
             <img className='w-[70%]' src="/assets/services.jpg" alt="" />
           </div>
@@ -56,7 +64,7 @@ const Legal = () => {
           </div>
         </div>
 
-        <div className='flex gap-4 my-10'>
+        <div className='flex gap-4 my-10 flex-col md:flex-row lg:flex-row'>
           <div className='flex-1 flex flex-col items-center justify-center gap-4 border p-2 shadow-md rounded-md'>
             <img  className='w-[50%]' src="/assets/cashback.png" alt="" />
             <h2 className='text-xl text-navColor'>Credit Control & Debt Recovery</h2>
@@ -151,12 +159,13 @@ const Legal = () => {
 
         <hr className='my-4'/>
 
-        <div className='flex gap-5 items-center my-10'>
+        <div className='flex gap-5 flex-col md:flex-row lg:flex-row items-center my-10'>
           <div className='flex-1'>
             <h2 className='bottom-0 text-2xl bg-mainColor flex items-center justify-center text-white p-1 my-10 w-[70%] '>Online Legal Consultancy</h2>
             <p className='text-contentColor'>Synergy Consultancy Services India strives to empower individuals and organizations through expert guidance in astrology, arbitration, legal consultancy, and natural life care. Our objective is to promote holistic well-being, resolve conflicts, and provide personalized solutions for a fulfilling and harmonious life.</p>
             <button className='bg-mainColor  py-2 px-4 rounded-full text-white my-2'>Book Appointment</button>
           </div>
+          <hr />
           <div className="flex-1 shadow-2xl rounded-md h-[70%]">
             <form onSubmit={handleSubmit} className='flex h-[70%] p-2 flex-col gap-4 justify-between'>
               <input className='border rounded-md p-1' value={data.mobile} onChange={e => setData(prev => ({...prev, mobile: e.target.value}))} type="number" placeholder='Mobile Number' />
@@ -164,6 +173,7 @@ const Legal = () => {
               <motion.input whileHover={{ scale: 1.02 }} whileTap={{ scale: .97 }}  type="submit" value="Submit" className='bg-mainColor text-white' />
             </form>
           </div>
+          <hr />
           <div className='flex-1 flex flex-col items-left gap-[20px]'>
             <p className='w-[80%] text-3xl text-mainColor'>Contact Us</p>
             <p className='w-[80%]  text-contentColor'>Thank you for your interest in Yash Consultancy Services. We are here to assist you with your queries and provide expert guidance in astrology, arbitration, legal consultancy, and natural Life Care.</p>

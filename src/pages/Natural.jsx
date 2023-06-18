@@ -2,10 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import {motion} from 'framer-motion'
 import axios from 'axios'
 import {toast} from 'react-toastify'
+import { useNavigate } from "react-router-dom";
+import Loader from '../components/Loader'
 
 const url = 'https://backend-s3nk.onrender.com'
 
 const Natural = () => {
+  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
 
   const [data, setData] = useState({
     mobile: '',
@@ -13,6 +17,7 @@ const Natural = () => {
   })
 
   const handleSubmit = async(e) => {
+    setIsLoading(true)
     e.preventDefault()
     axios.post(`${url}/api/contact-one`, data)
     .then(res => {
@@ -27,19 +32,21 @@ const Natural = () => {
         console.error(e.message)
         toast.error("Please fill out all the fields!")
     })
+    .finally(() => setIsLoading(false))
 }
 
   return (
     <div>
+      {isLoading && <Loader />}
       <div className='relative'>
         <img className='w-full object-cover h-[50vh] opacity-30' src="/assets/natural.jpg" alt="" />
         <div className='absolute -z-10 top-0 left-0 bg-gradient-to-t from-mainColor to-contentColor w-full h-[50vh]'></div>
-        <h2 className='absolute bottom-0 text-3xl bg-mainColor flex items-center justify-center text-white p-1 m-10 w-[20%]'>Natural Life Care</h2>
+        <h2 className='absolute bottom-0 text-3xl bg-mainColor flex items-center justify-center text-white p-1 m-10 md:w-[20%] lg:w-[20%]'>Natural Life Care</h2>
       </div>
 
       <div className='w-[70%] mx-auto'>
 
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <div className='flex gap-4 flex-col md:flex-row lg:flex-row items-center justify-center my-10'>
           <div className='flex-1'>
             <h2 className='bottom-0 text-2xl bg-mainColor flex items-center justify-center text-white p-1 my-10 w-[50%]'>Natural Life Care</h2>
             <p className='py-1'>The purity and benevolence of nature serve as the wellspring of our strength, and we wholeheartedly embrace organic practices in our therapies. Our commitment to utilizing the purest elements of nature ensures that our treatments are in perfect harmony with the environment. Nestled in a serene and unspoiled setting, we are blessed with the abundance of fresh air, pristine water, untouched soil, ample sunlight, and lush virgin forests, all of which form the backdrop for our therapeutic endeavors.</p>
@@ -55,7 +62,8 @@ const Natural = () => {
         </div>
         <p className='my-10'>We offer online natural Life care treatments that focus on natural healing methods to cure diseases without medication or side effects. Our personalized treatment plans and organic approaches aim to restore balance and promote overall well-being. With a commitment to holistic wellness, we prioritize safe and effective results through the use of natural remedies and therapies. Our experienced practitioners provide guidance and support throughout the journey, empowering individuals to take charge of their health. Embark on a journey of natural healing with our 100% organic online naturopathy treatments and experience the power of restoring vitality through natural means.</p>
 
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <hr />
+        <div className='flex gap-4 flex-col md:flex-row lg:flex-row items-center justify-center my-10'>
           <div className='flex-1 flex items-center justify-center'>
             <img className='w-[70%]' src="/natural/yoga.jpg" alt="" />
           </div>
@@ -67,7 +75,9 @@ const Natural = () => {
 
         </div>
 
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <hr />
+
+        <div className='flex gap-4 flex-col md:flex-row lg:flex-row items-center justify-center my-10'>
 
           <div className='flex-1'>
             <h2 className='bottom-0 text-2xl bg-mainColor flex items-center justify-center text-white p-1 my-10 w-[50%]'>Prakritik Upchar</h2>
@@ -80,7 +90,9 @@ const Natural = () => {
 
         </div>
 
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <hr />
+
+        <div className='flex gap-4 flex-col md:flex-row lg:flex-row items-center justify-center my-10'>
           <div className='flex-1 flex items-center justify-center'>
             <img className='w-[70%]' src="/natural/pancha.jpg" alt="" />
           </div>
@@ -92,7 +104,9 @@ const Natural = () => {
 
         </div>
 
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <hr />
+
+        <div className='flex gap-4 flex-col md:flex-row lg:flex-row items-center justify-center my-10'>
 
           <div className='flex-1'>
             <h2 className='bottom-0 text-2xl bg-mainColor flex items-center justify-center text-white p-1 my-10 w-[80%]'>Swachh Aahaar Awam Swachh Vichar</h2>
@@ -126,12 +140,14 @@ const Natural = () => {
 
         <hr className='my-4' />
 
-        <div className='flex gap-5 items-center my-10'>
+        <div className='flex gap-5 flex-col md:flex-row lg:flex-row items-center my-10'>
           <div className='flex-1'>
             <h2 className='bottom-0 text-2xl bg-mainColor flex items-center justify-center text-white p-1 my-10 w-[70%] '>Online Natural Life</h2>
-            <p className='text-contentColor'>Synergy Consultancy Services India strives to empower individuals and organizations through expert guidance in astrology, arbitration, legal consultancy, and natural life care. Our objective is to promote holistic well-being, resolve conflicts, and provide personalized solutions for a fulfilling and harmonious life.</p>
-            <button className='bg-mainColor  py-2 px-4 rounded-full text-white my-2'>Start treatment</button>
+            <p className='text-contentColor'>Yassh Consultancy Services India strives to empower individuals and organizations through expert guidance in astrology, arbitration, legal consultancy, and natural life care. Our objective is to promote holistic well-being, resolve conflicts, and provide personalized solutions for a fulfilling and harmonious life.</p>
+            <button onClick={() => navigate("/appointment")} className='bg-mainColor  py-2 px-4 rounded-full text-white my-2'>Start treatment</button>
           </div>
+
+          <hr />
           <div className="flex-1 shadow-2xl rounded-md h-[70%]">
           <form onSubmit={handleSubmit} className='flex h-[70%] p-2 flex-col gap-4 justify-between'>
               <input className='border rounded-md p-1' value={data.mobile} onChange={e => setData(prev => ({...prev, mobile: e.target.value}))} type="number" placeholder='Mobile Number' />
@@ -139,6 +155,8 @@ const Natural = () => {
               <motion.input whileHover={{ scale: 1.02 }} whileTap={{ scale: .97 }}  type="submit" value="Submit" className='bg-mainColor text-white' />
             </form>
           </div>
+
+          <hr />
           <div className='flex-1 flex flex-col items-left gap-[20px]'>
             <p className='w-[80%] text-3xl text-mainColor'>Contact Us</p>
             <p className='w-[80%]  text-contentColor'>Thank you for your interest in Yash Consultancy Services. We are here to assist you with your queries and provide expert guidance in astrology, arbitration, legal consultancy, and natural Life Care.</p>

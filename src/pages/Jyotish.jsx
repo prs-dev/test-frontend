@@ -4,9 +4,11 @@ import { motion } from 'framer-motion'
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import {useNavigate} from 'react-router-dom'
+import Loader from '../components/Loader'
 
 const Jyotish = () => {
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
 
   const [clicked, setClicked] = useState({
     one: false,
@@ -50,6 +52,7 @@ const Jyotish = () => {
   }
 
   const handleSubmit = async(e) => {
+    setIsLoading(true)
     e.preventDefault()
     axios.post(`${url}/api/contact-two`, data)
     .then(res => {
@@ -66,6 +69,7 @@ const Jyotish = () => {
         console.error(e.message)
         toast.error("Please fill out all the fields!")
     })
+    .finally(() => setIsLoading(false))
 }
 
   console.log(data)
@@ -74,13 +78,14 @@ const Jyotish = () => {
 
   return (
     <div>
+      {isLoading && <Loader />}
       <div className='relative h-[50vh] overflow-hidden'>
         {/* <img className='w-full object-cover h-[50vh] opacity-30' src="/assets/legalv2.png" alt="" /> */}
-        <video className='w-full object-cover opacity-50' loop autoPlay muted>
+        <video className='w-full object-cover opacity-50 h-[200%]' loop autoPlay muted>
           <source src='/assets/astro.mp4' type="video/mp4" />
         </video>
         <div className='absolute -z-10 top-0 left-0 bg-gradient-to-t from-mainColor to-contentColor w-full h-[50vh]'></div>
-        <h2 className='absolute bottom-0 text-3xl bg-mainColor flex items-center justify-center text-white p-1 m-10 w-[20%]'>Bhartiya Jyotish</h2>
+        <h2 className='absolute bottom-0 text-3xl bg-mainColor flex items-center justify-center text-white p-1 m-10 md:w-[20%] lg:w-[20%]'>Bhartiya Jyotish</h2>
 
         {!clicked.one && <motion.div onClick={() => setClicked(prev => ({ ...prev, one: true }))} animate={{
           translateY: [10, 20, 10]
@@ -113,7 +118,7 @@ const Jyotish = () => {
 
       </div>
       <div className='w-[70%] mx-auto'>
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <div className='flex gap-4 flex-col md:flex-row lg:flex-row items-center justify-center my-10'>
           <div className='flex-1'>
             <h2 className='bottom-0 text-2xl bg-mainColor flex items-center justify-center text-white p-1 my-10 w-[60%]'>Welcome to Bhartiye Jyotish</h2>
             <p className='py-1'>Discover the profound insights of Indian astrology with our expert services. Gain clarity, guidance, and alignment with the cosmic energies to unlock your true potential and lead a fulfilling life</p>
@@ -123,6 +128,8 @@ const Jyotish = () => {
           </div>
         </div>
 
+        <hr />
+
         <div className='my-10'>
           <div className='flex flex-col items-center justify-center'>
             <h2 className='bottom-0 text-2xl bg-mainColor flex items-center justify-center text-white p-1 my-10 w-[50%]'>Our Services</h2>
@@ -130,7 +137,7 @@ const Jyotish = () => {
           </div>
         </div>
 
-        <div className='flex items-center justify-center g-4 my-10'>
+        <div className='hidden md:flex lg:flex items-center justify-center g-4 my-10'>
           <Slider {...settings}>
             <section>
               <img className='' src="/jyotish/1.png" alt="" />
@@ -159,7 +166,7 @@ const Jyotish = () => {
           </Slider>
         </div>
 
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <div className='flex gap-4 flex-col md:flex-row lg:flex-row items-center justify-center my-10'>
           <div className='flex-1 flex items-center justify-center'>
             <img className='w-[70%]' src="/jyotish/pandit.png" alt="" />
           </div>
@@ -170,11 +177,13 @@ const Jyotish = () => {
 
         </div>
 
+        <hr />
+
         <div className='flex flex-col gap-4 items-center justify-center my-10'>
           <div className=''>
             <h2 className='bottom-0 text-2xl bg-mainColor flex items-center justify-center text-white p-1 my-10 px-10'>Pooja</h2>
           </div>
-          <div className='flex gap-4'>
+          <div className='flex gap-4 flex-col md:flex-row lg:flex-row'>
             <div className='border shadow-lg p-2 rounded-md'>
               <img src="/jyotish/katha.png" alt="" />
               <h2>Katha</h2>

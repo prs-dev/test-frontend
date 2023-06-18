@@ -6,12 +6,12 @@ const About = () => {
       <div className='relative'>
         <img className='w-full object-cover h-[50vh] opacity-30' src="/assets/panel.jpg" alt="" />
         <div className='absolute -z-10 top-0 left-0 bg-gradient-to-t from-mainColor to-contentColor w-full h-[50vh]'></div>
-        <h2 className='absolute bottom-0 text-3xl bg-mainColor flex items-center justify-center text-white p-1 m-10 w-[20%]'>About Us</h2>
+        <h2 className='absolute bottom-0 text-3xl bg-mainColor flex items-center justify-center text-white p-1 m-10  md:w-[20%] lg:w-[20%]'>About Us</h2>
       </div>
       <div className='w-[70%] mx-auto'>
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <div className='flex gap-4 items-center flex-col md:flex-row lg:flex-row justify-center my-10'>
           <div className='flex-1'>
-            <h2 className='bottom-0 text-2xl bg-mainColor flex items-center justify-center text-white p-1 my-10 w-[50%]'>Welcome To YCS INDIA</h2>
+            <h2 className='bottom-0 text-2xl bg-mainColor flex items-center justify-center text-white p-1 my-10 md:w-[50%] lg:w-[50%]'>Welcome To YCS INDIA</h2>
             <p className='py-1 text-contentColor'>Common Factors in Astrology, Law, and Natural Life Care: Exploring the Intersections</p>
             <p className='py-2 text-contentColor'>Astrology, law, and natural life care may seem like distinct fields at first glance, but they share certain common factors that connect them on a deeper level. While each discipline focuses on different aspects of life, there are intriguing intersections where these practices converge and complement each other. Let’s explore some of the common factors in astrology, law, and natural life care. </p>
           </div>
@@ -34,7 +34,9 @@ const About = () => {
           </ol>
         </div>
 
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <hr />
+
+        <div className='flex gap-4 flex-col md:flex-row lg:flex-row items-center justify-center my-10'>
           <div className='flex-1 flex items-center justify-center'>
             <img className='w-[70%] h-[20vh]' src="/about/two.jpg" alt="" />
           </div>
@@ -44,7 +46,9 @@ const About = () => {
           </div>
         </div>
 
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <hr />
+
+        <div className='flex gap-4 flex-col md:flex-row lg:flex-row items-center justify-center my-10'>
           <div className='flex-1'>
             <h2 className='bottom-0 text-2xl bg-mainColor flex items-center justify-center text-white p-1 my-10 w-[50%]'>Our Mission</h2>
             <p className='py-2 text-contentColor'>Astrology: Our mission is to provide accurate and insightful astrological guidance, helping individuals gain a deeper understanding of their lives, make informed decisions, and navigate their personal and professional journeys with clarity and purpose.</p>
@@ -54,7 +58,9 @@ const About = () => {
           </div>
         </div>
 
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <hr />
+
+        <div className='flex flex-col md:flex-row lg:flex-row gap-4 items-center justify-center my-10'>
           <div className='flex-1 flex items-center justify-center'>
             <img className='w-[70%]' src="/about/four.jpg" alt="" />
           </div>
@@ -64,7 +70,9 @@ const About = () => {
           </div>
         </div>
 
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <hr />
+
+        <div className='flex gap-4 flex-col md:flex-row lg:flex-row items-center justify-center my-10'>
           <div className='flex-1'>
             <h2 className='bottom-0 text-2xl bg-mainColor flex items-center justify-center text-white p-1 my-10 w-[50%]'>Integration of Disciplines</h2>
             <p className='py-2 text-contentColor'>We strive to explore and integrate the intersections of astrology, arbitration, legal consultancy, and natural life care. By offering a comprehensive approach, we aim to address the diverse needs of our clients, promoting their physical, emotional, and spiritual growth, and guiding them towards a harmonious and fulfilling life.</p>
@@ -74,7 +82,9 @@ const About = () => {
           </div>
         </div>
 
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <hr />
+
+        <div className='flex gap-4 flex-col md:flex-row lg:flex-row items-center justify-center my-10'>
           <div className='flex-1 flex items-center justify-center'>
             <img className='w-[70%]' src="/about/six.jpg" alt="" />
           </div>
@@ -84,7 +94,9 @@ const About = () => {
           </div>
         </div>
 
-        <div className='flex gap-4 items-center justify-center my-10'>
+        <hr />
+
+        <div className='flex gap-4 flex-col md:flex-row lg:flex-row items-center justify-center my-10'>
           <div className='flex-1'>
             <h2 className='bottom-0 text-2xl bg-mainColor flex items-center justify-center text-white p-1 my-10 w-[60%]'>Continuous Learning and Growth</h2>
             <p className='py-2 text-contentColor'>We are dedicated to staying updated with the latest developments in astrology, arbitration, legal consultancy, and natural life care. Our mission is to continuously expand our knowledge, refine our skills, and adopt innovative practices to offer the highest quality services and solutions to our clients.</p>

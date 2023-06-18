@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState, useRef, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import {useNavigate} from 'react-router-dom'
+import Loader from '../components/Loader'
 
 const url = 'https://backend-s3nk.onrender.com'
 
@@ -10,6 +11,7 @@ const Panel = () => {
   const profileRef = useRef()
   const idRef = useRef()
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
 
   const [state, setState] = useState([])
   const [cities, setCities] = useState([])
@@ -57,6 +59,7 @@ const Panel = () => {
 
 
   const handleSubmit = async (e) => {
+    setIsLoading(true)
     e.preventDefault()
     const formData = new FormData()
     Object.entries(data).forEach(([key, value]) => {
@@ -90,7 +93,7 @@ const Panel = () => {
     } catch (error) {
       toast.error("Please fill out all fields!")
     }
-
+    setIsLoading(false)
   }
 
 
@@ -98,13 +101,14 @@ const Panel = () => {
 
   return (
     <div>
+      {isLoading && <Loader />}
       <div className='relative'>
         <img className='w-full object-cover h-[50vh] opacity-30' src="/assets/panel.jpg" alt="" />
         <div className='absolute -z-10 top-0 left-0 bg-gradient-to-t from-mainColor to-contentColor w-full h-[50vh]'></div>
-        <h2 className='absolute bottom-0 text-3xl bg-mainColor flex items-center justify-center text-white p-1 m-10 w-[20%]'>Panellist</h2>
+        <h2 className='absolute bottom-0 text-3xl bg-mainColor flex items-center justify-center text-white p-1 m-10 md:w-[20%] lg:w-[20%]'>Panellist</h2>
       </div>
       <div className='w-[70%] mx-auto'>
-        <div className='flex gap-4 my-20'>
+        <div className='flex flex-col md:flex-row lg:flex-row gap-4 my-20'>
           <div id='card1' className='hover:text-white flex-1 flex flex-col gap-5 border p-2 shadow-lg rounded-md'>
             <h2 className='text-2xl text-mainColor'>Astrology Consultancy</h2>
             <p>Mr. Pandey is a qualified and experienced practicing astrologer on our panel. With a deep understanding of cosmic influences and planetary alignments, he provides insightful guidance through birth charts and horoscopes. Mr. Padey's expertise and intuitive abilities make him a valuable resource for those seeking astrological insights and guidance.</p>
@@ -213,7 +217,7 @@ const Panel = () => {
           <input type="file" ref={profileRef} onChange={e => setData(prev => ({ ...prev, profile: e.target.files[0] }))} />
           <label>Id Proof(Upload Aadhar Card in pdf format)</label>
           <input type="file" ref={idRef} onChange={e => setData(prev => ({ ...prev, id: e.target.files[0] }))} />
-          <motion.input whileHover={{ scale: 1.05 }} whileTap={{ scale: .9 }} type="submit" value="Submit" className='bg-mainColor text-white p-2 w-[10%] my-5' />
+          <motion.input whileHover={{ scale: 1.05 }} whileTap={{ scale: .9 }} type="submit" value="Submit" className='bg-mainColor text-white p-2 md:w-[20%] lg:w-[10%] my-5' />
         </form>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import {motion} from 'framer-motion'
 import axios from 'axios'
 import {toast} from 'react-toastify'
+import Loader from "../components/Loader";
 
 const url = 'https://backend-s3nk.onrender.com'
 
@@ -15,9 +16,12 @@ const Contact = () => {
     message: ''
   })
 
+  const [isLoading, setIsLoading] = useState(false)
+
   useEffect(() => { setTimeout(() => markerRef?.current?.openPopup(), 1000) }, [])
 
   const handleSubmit = async(e) => {
+    setIsLoading(true)
     e.preventDefault()
     axios.post(`${url}/api/contact-two`, data)
     .then(res => {
@@ -34,6 +38,7 @@ const Contact = () => {
         console.error(e.message)
         toast.error("Please fill out all the fields!")
     })
+    .finally(() => setIsLoading(false))
 }
 
   // useEffect(() => {
@@ -42,17 +47,18 @@ const Contact = () => {
 
   return (
     <div className=''>
+      {isLoading && <Loader />}
       <div className='relative'>
         <img className='w-full object-contain h-[70vh] opacity-40' src="/assets/contactus.png" alt="" />
         <div className='absolute -z-10 top-0 left-0 bg-gradient-to-t from-[#fff] to-mainColor w-full h-[70vh]'></div>
       </div>
       <div className='w-[60%] mx-auto my-10'>
         <div className='flex flex-col gap-[20px]'>
-          <div className="flex items-center">
+          <div className="flex items-center flex-col md:flex-row lg:flex-row">
 
             <div className='flex-[2] flex flex-col items-left gap-[20px]'>
-              <p className='w-[25%] text-3xl font-semibold text-white bg-mainColor p-2 inline'>Contact Us</p>
-              <p className='w-[80%] font-semibold text-contentColor'>Thank you for your interest in Sahai Consultancy Services.
+              <p className='md:w-[25%] lg:w-[30%] text-3xl font-semibold text-white bg-mainColor p-2 inline'>Contact Us</p>
+              <p className='md:w-[80%] lg:w-[80%] font-semibold text-contentColor'>Thank you for your interest in Sahai Consultancy Services.
                 <br />We are here to assist you with your queries and provide expert guidance in astrology, arbitration, legal consultancy, and naturopathy.
                 <br />You can reach out to us through the following channels:
 

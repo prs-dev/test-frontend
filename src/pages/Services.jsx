@@ -129,11 +129,11 @@ const Services = () => {
       <div className='relative'>
         <img className='w-full object-cover h-[50vh] opacity-30' src="/pooja/services.jpg" alt="" />
         <div className='absolute -z-10 top-0 left-0 bg-gradient-to-t from-mainColor to-contentColor w-full h-[50vh]'></div>
-        <h2 className='absolute bottom-0 text-3xl bg-mainColor flex items-center justify-center text-white p-1 m-10 w-[20%]'>Our Services</h2>
+        <h2 className='absolute bottom-0 text-3xl bg-mainColor flex items-center justify-center text-white p-1 m-10 md:w-[20%] lg:w-[20%]'>Our Services</h2>
       </div>
       <div className='w-[70%] mx-auto'>
-        <h2 className='text-3xl bg-mainColor flex items-center justify-center text-white py-1 my-10 w-[10%]'>Pooja</h2>
-        <motion.div className='grid grid-cols-4 w-[100%] mx-auto gap-10 my-10'>
+        <h2 className='text-3xl bg-mainColor flex items-center justify-center text-white py-1 my-10 md:w-[20%] lg:w-[10%]'>Pooja</h2>
+        <motion.div className='grid grid-cols-1 md:grid md:grid-cols-3 lg:grid lg:grid-cols-4 w-[100%] mx-auto gap-10 my-10'>
           {arr.map(item => (
             <div className='flex flex-col items-center text-contentColor rounded-lg gap-2 p-1 border shadow-lg'>
               <img className='h-[80%] w-[80%]' src={item.src} alt="" />
