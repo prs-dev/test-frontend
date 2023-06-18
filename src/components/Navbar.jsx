@@ -9,7 +9,7 @@ const variants = {
 
 const Navbar = ({setIsOpen, isOpen}) => {
   return (
-    <div className="fixed w-[100%] z-[999] top-0 h-[70px] p-[10px] bg-navColor text-white flex items-center justify-between shadow-md">
+    <div className=" h-[70px] p-[10px] bg-navColor text-white flex items-center justify-between shadow-md">
       <div className="w-[70px] bg-gradient-to-t from-mainColor rounded-[10px]">
         <img className="w-[100%]" src="/assets/logov2.png" alt="" />
       </div>
