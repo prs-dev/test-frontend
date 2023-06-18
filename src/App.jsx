@@ -27,16 +27,16 @@ const App = () => {
         <ToastContainer/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/jyotish" element={<Jyotish />} />
-        <Route path="/legal" element={<Legal />} />
-        <Route path="/natural" element={<Natural />} />
-        <Route path="/panel" element={<Panel />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/vastu" element={<Vastu />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/appointment" element={<Appointment />} />
-        <Route path="/success" element={<Success />} />
+        <Route exact path="/about" element={<About />} />
+        <Route exact path="/jyotish" element={<Jyotish />} />
+        <Route exact path="/legal" element={<Legal />} />
+        <Route exact path="/natural" element={<Natural />} />
+        <Route exact path="/panel" element={<Panel />} />
+        <Route exact path="/services" element={<Services />} />
+        <Route exact path="/vastu" element={<Vastu />} />
+        <Route exact path="/contact" element={<Contact />} />
+        <Route exact path="/appointment" element={<Appointment />} />
+        <Route exact path="/success" element={<Success />} />
       </Routes>
       </main>
       <footer>
